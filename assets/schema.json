@@ -1,0 +1,1826 @@
+[
+  {
+    "name": "cidade",
+    "columns": [
+      {
+        "name": "id_cidade",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "nome_cidade",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": true,
+        "description": "Campo nome cidade conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "uf",
+        "type": "CHAR(2)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": true,
+        "description": "Campo uf conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [],
+    "pk": "id_cidade"
+  },
+  {
+    "name": "endereco",
+    "columns": [
+      {
+        "name": "id_endereco",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_cidade",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_endereco_cidade",
+          "column": "id_cidade",
+          "table": "cidade",
+          "ref": "id_cidade"
+        },
+        "unique": false,
+        "description": "Referência a cidade.id_cidade.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "cep",
+        "type": "CHAR(8)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": true,
+        "description": "Campo cep conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "logradouro",
+        "type": "VARCHAR(150)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo logradouro conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "bairro",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo bairro conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_endereco_cidade",
+        "column": "id_cidade",
+        "table": "cidade",
+        "ref": "id_cidade"
+      }
+    ],
+    "pk": "id_endereco"
+  },
+  {
+    "name": "loja",
+    "columns": [
+      {
+        "name": "id_loja",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "nome_loja",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo nome loja conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "cnpj",
+        "type": "VARCHAR(14)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": true,
+        "description": "Campo cnpj conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_endereco",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_loja_endereco",
+          "column": "id_endereco",
+          "table": "endereco",
+          "ref": "id_endereco"
+        },
+        "unique": false,
+        "description": "Referência a endereco.id_endereco.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "numero_endereco",
+        "type": "VARCHAR(10)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo numero endereco conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "complemento",
+        "type": "VARCHAR(100)",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo complemento conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "telefone",
+        "type": "VARCHAR(15)",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo telefone conforme estrutura SQL.",
+        "classification": "Potencial dado pessoal"
+      },
+      {
+        "name": "id_funcionario_responsavel",
+        "type": "INT(11)",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": {
+          "constraint": "fk_loja_responsavel",
+          "column": "id_funcionario_responsavel",
+          "table": "funcionario",
+          "ref": "id_funcionario"
+        },
+        "unique": false,
+        "description": "Referência a funcionario.id_funcionario.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "ativo",
+        "type": "TINYINT(1)",
+        "nullable": false,
+        "auto": false,
+        "default": "1",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo ativo conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_loja_endereco",
+        "column": "id_endereco",
+        "table": "endereco",
+        "ref": "id_endereco"
+      },
+      {
+        "constraint": "fk_loja_responsavel",
+        "column": "id_funcionario_responsavel",
+        "table": "funcionario",
+        "ref": "id_funcionario"
+      }
+    ],
+    "pk": "id_loja"
+  },
+  {
+    "name": "funcionario",
+    "columns": [
+      {
+        "name": "id_funcionario",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_loja",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_func_loja",
+          "column": "id_loja",
+          "table": "loja",
+          "ref": "id_loja"
+        },
+        "unique": false,
+        "description": "Referência a loja.id_loja.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "nome_funcionario",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo nome funcionario conforme estrutura SQL.",
+        "classification": "Potencial dado pessoal"
+      },
+      {
+        "name": "cpf",
+        "type": "VARCHAR(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": true,
+        "description": "Campo cpf conforme estrutura SQL.",
+        "classification": "Potencial dado pessoal"
+      },
+      {
+        "name": "email",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": true,
+        "description": "Campo email conforme estrutura SQL.",
+        "classification": "Potencial dado pessoal"
+      },
+      {
+        "name": "login",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": true,
+        "description": "Campo login conforme estrutura SQL.",
+        "classification": "Potencial dado pessoal"
+      },
+      {
+        "name": "senha_hash",
+        "type": "VARCHAR(255)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo senha hash conforme estrutura SQL.",
+        "classification": "Potencial dado pessoal"
+      },
+      {
+        "name": "perfil",
+        "type": "ENUM('ATENDENTE', 'GERENTE', 'ADMINISTRADOR')",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo perfil conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "data_admissao",
+        "type": "DATE",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo data admissao conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "ativo",
+        "type": "TINYINT(1)",
+        "nullable": false,
+        "auto": false,
+        "default": "1",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo ativo conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "data_consentimento_lgpd",
+        "type": "DATETIME",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo data consentimento lgpd conforme estrutura SQL.",
+        "classification": "Potencial dado pessoal"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_func_loja",
+        "column": "id_loja",
+        "table": "loja",
+        "ref": "id_loja"
+      }
+    ],
+    "pk": "id_funcionario"
+  },
+  {
+    "name": "categoria",
+    "columns": [
+      {
+        "name": "id_categoria",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "nome_categoria",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": true,
+        "description": "Campo nome categoria conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "descricao",
+        "type": "VARCHAR(255)",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo descricao conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "ativo",
+        "type": "TINYINT(1)",
+        "nullable": false,
+        "auto": false,
+        "default": "1",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo ativo conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [],
+    "pk": "id_categoria"
+  },
+  {
+    "name": "produto",
+    "columns": [
+      {
+        "name": "id_produto",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_categoria",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_produto_categoria",
+          "column": "id_categoria",
+          "table": "categoria",
+          "ref": "id_categoria"
+        },
+        "unique": false,
+        "description": "Referência a categoria.id_categoria.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "nome_produto",
+        "type": "VARCHAR(100)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo nome produto conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "ativo",
+        "type": "TINYINT(1)",
+        "nullable": false,
+        "auto": false,
+        "default": "1",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo ativo conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_produto_categoria",
+        "column": "id_categoria",
+        "table": "categoria",
+        "ref": "id_categoria"
+      }
+    ],
+    "pk": "id_produto"
+  },
+  {
+    "name": "produto_loja",
+    "columns": [
+      {
+        "name": "id_produto_loja",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_produto",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_pl_produto",
+          "column": "id_produto",
+          "table": "produto",
+          "ref": "id_produto"
+        },
+        "unique": true,
+        "description": "Referência a produto.id_produto.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_loja",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_pl_loja",
+          "column": "id_loja",
+          "table": "loja",
+          "ref": "id_loja"
+        },
+        "unique": true,
+        "description": "Referência a loja.id_loja.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "preco_tabela",
+        "type": "DECIMAL(10,2)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo preco tabela conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "estoque_atual_caixas",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": "0",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo estoque atual caixas conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "disponivel",
+        "type": "TINYINT(1)",
+        "nullable": false,
+        "auto": false,
+        "default": "1",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo disponivel conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_pl_loja",
+        "column": "id_loja",
+        "table": "loja",
+        "ref": "id_loja"
+      },
+      {
+        "constraint": "fk_pl_produto",
+        "column": "id_produto",
+        "table": "produto",
+        "ref": "id_produto"
+      }
+    ],
+    "pk": "id_produto_loja"
+  },
+  {
+    "name": "baixa_estoque",
+    "columns": [
+      {
+        "name": "id_baixa_estoque",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_produto_loja",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_baixa_pl",
+          "column": "id_produto_loja",
+          "table": "produto_loja",
+          "ref": "id_produto_loja"
+        },
+        "unique": false,
+        "description": "Referência a produto_loja.id_produto_loja.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_funcionario",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_baixa_func",
+          "column": "id_funcionario",
+          "table": "funcionario",
+          "ref": "id_funcionario"
+        },
+        "unique": false,
+        "description": "Referência a funcionario.id_funcionario.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "quantidade_caixas",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo quantidade caixas conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "data_baixa",
+        "type": "DATETIME",
+        "nullable": false,
+        "auto": false,
+        "default": "CURRENT_TIMESTAMP()",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo data baixa conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_baixa_func",
+        "column": "id_funcionario",
+        "table": "funcionario",
+        "ref": "id_funcionario"
+      },
+      {
+        "constraint": "fk_baixa_pl",
+        "column": "id_produto_loja",
+        "table": "produto_loja",
+        "ref": "id_produto_loja"
+      }
+    ],
+    "pk": "id_baixa_estoque"
+  },
+  {
+    "name": "caixa",
+    "columns": [
+      {
+        "name": "id_caixa",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_loja",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_caixa_loja",
+          "column": "id_loja",
+          "table": "loja",
+          "ref": "id_loja"
+        },
+        "unique": false,
+        "description": "Referência a loja.id_loja.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_funcionario",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_caixa_func",
+          "column": "id_funcionario",
+          "table": "funcionario",
+          "ref": "id_funcionario"
+        },
+        "unique": false,
+        "description": "Referência a funcionario.id_funcionario.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "situacao",
+        "type": "ENUM('ABERTO', 'FECHADO')",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo situacao conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "data_abertura",
+        "type": "DATETIME",
+        "nullable": false,
+        "auto": false,
+        "default": "CURRENT_TIMESTAMP()",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo data abertura conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "valor_abertura",
+        "type": "DECIMAL(10,2)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo valor abertura conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "data_fechamento",
+        "type": "DATETIME",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo data fechamento conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "valor_fechamento",
+        "type": "DECIMAL(10,2)",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo valor fechamento conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "valor_esperado",
+        "type": "DECIMAL(10,2)",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo valor esperado conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "quebra_caixa",
+        "type": "DECIMAL(10,2)",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo quebra caixa conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_loja_aberta",
+        "type": "INT(11)",
+        "nullable": true,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": true,
+        "description": "Campo id loja aberta conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_caixa_func",
+        "column": "id_funcionario",
+        "table": "funcionario",
+        "ref": "id_funcionario"
+      },
+      {
+        "constraint": "fk_caixa_loja",
+        "column": "id_loja",
+        "table": "loja",
+        "ref": "id_loja"
+      }
+    ],
+    "pk": "id_caixa"
+  },
+  {
+    "name": "estorno_baixa",
+    "columns": [
+      {
+        "name": "id_estorno_baixa",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_baixa_estoque",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_estbaixa_baixa",
+          "column": "id_baixa_estoque",
+          "table": "baixa_estoque",
+          "ref": "id_baixa_estoque"
+        },
+        "unique": false,
+        "description": "Referência a baixa_estoque.id_baixa_estoque.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_funcionario",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_estbaixa_func",
+          "column": "id_funcionario",
+          "table": "funcionario",
+          "ref": "id_funcionario"
+        },
+        "unique": false,
+        "description": "Referência a funcionario.id_funcionario.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "quantidade_caixas",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo quantidade caixas conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "motivo",
+        "type": "VARCHAR(255)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo motivo conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "data_estorno",
+        "type": "DATETIME",
+        "nullable": false,
+        "auto": false,
+        "default": "CURRENT_TIMESTAMP()",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo data estorno conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_estbaixa_baixa",
+        "column": "id_baixa_estoque",
+        "table": "baixa_estoque",
+        "ref": "id_baixa_estoque"
+      },
+      {
+        "constraint": "fk_estbaixa_func",
+        "column": "id_funcionario",
+        "table": "funcionario",
+        "ref": "id_funcionario"
+      }
+    ],
+    "pk": "id_estorno_baixa"
+  },
+  {
+    "name": "venda",
+    "columns": [
+      {
+        "name": "id_venda",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_loja",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_venda_loja",
+          "column": "id_loja",
+          "table": "loja",
+          "ref": "id_loja"
+        },
+        "unique": false,
+        "description": "Referência a loja.id_loja.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_funcionario",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_venda_func",
+          "column": "id_funcionario",
+          "table": "funcionario",
+          "ref": "id_funcionario"
+        },
+        "unique": false,
+        "description": "Referência a funcionario.id_funcionario.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_caixa",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_venda_caixa",
+          "column": "id_caixa",
+          "table": "caixa",
+          "ref": "id_caixa"
+        },
+        "unique": false,
+        "description": "Referência a caixa.id_caixa.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "data_hora",
+        "type": "DATETIME",
+        "nullable": false,
+        "auto": false,
+        "default": "CURRENT_TIMESTAMP()",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo data hora conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_venda_caixa",
+        "column": "id_caixa",
+        "table": "caixa",
+        "ref": "id_caixa"
+      },
+      {
+        "constraint": "fk_venda_func",
+        "column": "id_funcionario",
+        "table": "funcionario",
+        "ref": "id_funcionario"
+      },
+      {
+        "constraint": "fk_venda_loja",
+        "column": "id_loja",
+        "table": "loja",
+        "ref": "id_loja"
+      }
+    ],
+    "pk": "id_venda"
+  },
+  {
+    "name": "estorno_venda",
+    "columns": [
+      {
+        "name": "id_estorno_venda",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_venda",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_ev_venda",
+          "column": "id_venda",
+          "table": "venda",
+          "ref": "id_venda"
+        },
+        "unique": true,
+        "description": "Referência a venda.id_venda.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_funcionario_autorizador",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_ev_func",
+          "column": "id_funcionario_autorizador",
+          "table": "funcionario",
+          "ref": "id_funcionario"
+        },
+        "unique": false,
+        "description": "Referência a funcionario.id_funcionario.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "motivo",
+        "type": "VARCHAR(255)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo motivo conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "data_hora",
+        "type": "DATETIME",
+        "nullable": false,
+        "auto": false,
+        "default": "CURRENT_TIMESTAMP()",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo data hora conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_ev_func",
+        "column": "id_funcionario_autorizador",
+        "table": "funcionario",
+        "ref": "id_funcionario"
+      },
+      {
+        "constraint": "fk_ev_venda",
+        "column": "id_venda",
+        "table": "venda",
+        "ref": "id_venda"
+      }
+    ],
+    "pk": "id_estorno_venda"
+  },
+  {
+    "name": "forma_pagamento",
+    "columns": [
+      {
+        "name": "id_forma_pagamento",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "descricao",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": true,
+        "description": "Campo descricao conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "exige_autorizacao",
+        "type": "TINYINT(1)",
+        "nullable": false,
+        "auto": false,
+        "default": "0",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo exige autorizacao conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "ativo",
+        "type": "TINYINT(1)",
+        "nullable": false,
+        "auto": false,
+        "default": "1",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo ativo conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [],
+    "pk": "id_forma_pagamento"
+  },
+  {
+    "name": "transferencia_estoque",
+    "columns": [
+      {
+        "name": "id_transferencia_estoque",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_loja_origem",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_transf_origem",
+          "column": "id_loja_origem",
+          "table": "loja",
+          "ref": "id_loja"
+        },
+        "unique": false,
+        "description": "Referência a loja.id_loja.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_loja_destino",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_transf_destino",
+          "column": "id_loja_destino",
+          "table": "loja",
+          "ref": "id_loja"
+        },
+        "unique": false,
+        "description": "Referência a loja.id_loja.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_funcionario",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_transf_func",
+          "column": "id_funcionario",
+          "table": "funcionario",
+          "ref": "id_funcionario"
+        },
+        "unique": false,
+        "description": "Referência a funcionario.id_funcionario.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "data_transferencia",
+        "type": "DATETIME",
+        "nullable": false,
+        "auto": false,
+        "default": "CURRENT_TIMESTAMP()",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo data transferencia conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_transf_destino",
+        "column": "id_loja_destino",
+        "table": "loja",
+        "ref": "id_loja"
+      },
+      {
+        "constraint": "fk_transf_func",
+        "column": "id_funcionario",
+        "table": "funcionario",
+        "ref": "id_funcionario"
+      },
+      {
+        "constraint": "fk_transf_origem",
+        "column": "id_loja_origem",
+        "table": "loja",
+        "ref": "id_loja"
+      }
+    ],
+    "pk": "id_transferencia_estoque"
+  },
+  {
+    "name": "item_transferencia",
+    "columns": [
+      {
+        "name": "id_item_transferencia",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_transferencia_estoque",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_it_transf",
+          "column": "id_transferencia_estoque",
+          "table": "transferencia_estoque",
+          "ref": "id_transferencia_estoque"
+        },
+        "unique": true,
+        "description": "Referência a transferencia_estoque.id_transferencia_estoque.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_produto",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_it_produto",
+          "column": "id_produto",
+          "table": "produto",
+          "ref": "id_produto"
+        },
+        "unique": true,
+        "description": "Referência a produto.id_produto.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "quantidade_caixas",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo quantidade caixas conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_it_produto",
+        "column": "id_produto",
+        "table": "produto",
+        "ref": "id_produto"
+      },
+      {
+        "constraint": "fk_it_transf",
+        "column": "id_transferencia_estoque",
+        "table": "transferencia_estoque",
+        "ref": "id_transferencia_estoque"
+      }
+    ],
+    "pk": "id_item_transferencia"
+  },
+  {
+    "name": "item_venda",
+    "columns": [
+      {
+        "name": "id_item_venda",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_venda",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_iv_venda",
+          "column": "id_venda",
+          "table": "venda",
+          "ref": "id_venda"
+        },
+        "unique": true,
+        "description": "Referência a venda.id_venda.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_produto_loja",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_iv_pl",
+          "column": "id_produto_loja",
+          "table": "produto_loja",
+          "ref": "id_produto_loja"
+        },
+        "unique": true,
+        "description": "Referência a produto_loja.id_produto_loja.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "quantidade",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo quantidade conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "preco_praticado",
+        "type": "DECIMAL(10,2)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo preco praticado conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "desconto_unitario",
+        "type": "DECIMAL(10,2)",
+        "nullable": false,
+        "auto": false,
+        "default": "0.00",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo desconto unitario conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_iv_pl",
+        "column": "id_produto_loja",
+        "table": "produto_loja",
+        "ref": "id_produto_loja"
+      },
+      {
+        "constraint": "fk_iv_venda",
+        "column": "id_venda",
+        "table": "venda",
+        "ref": "id_venda"
+      }
+    ],
+    "pk": "id_item_venda"
+  },
+  {
+    "name": "log_acesso",
+    "columns": [
+      {
+        "name": "id_log_acesso",
+        "type": "BIGINT(20)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_funcionario",
+        "type": "INT(11)",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": {
+          "constraint": "fk_logacesso_func",
+          "column": "id_funcionario",
+          "table": "funcionario",
+          "ref": "id_funcionario"
+        },
+        "unique": false,
+        "description": "Referência a funcionario.id_funcionario.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "login_informado",
+        "type": "VARCHAR(50)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo login informado conforme estrutura SQL.",
+        "classification": "Potencial dado pessoal"
+      },
+      {
+        "name": "sucesso",
+        "type": "TINYINT(1)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo sucesso conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "ip_origem",
+        "type": "VARCHAR(45)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo ip origem conforme estrutura SQL.",
+        "classification": "Potencial dado pessoal"
+      },
+      {
+        "name": "data_hora_utc",
+        "type": "DATETIME",
+        "nullable": false,
+        "auto": false,
+        "default": "CURRENT_TIMESTAMP()",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo data hora utc conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_logacesso_func",
+        "column": "id_funcionario",
+        "table": "funcionario",
+        "ref": "id_funcionario"
+      }
+    ],
+    "pk": "id_log_acesso"
+  },
+  {
+    "name": "log_auditoria",
+    "columns": [
+      {
+        "name": "id_log_auditoria",
+        "type": "BIGINT(20)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_funcionario",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_log_func",
+          "column": "id_funcionario",
+          "table": "funcionario",
+          "ref": "id_funcionario"
+        },
+        "unique": false,
+        "description": "Referência a funcionario.id_funcionario.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "tabela_afetada",
+        "type": "VARCHAR(64)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo tabela afetada conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "operacao",
+        "type": "VARCHAR(30)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo operacao conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_registro_afetado",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo id registro afetado conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "dados_anteriores",
+        "type": "LONGTEXT",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo dados anteriores conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "dados_novos",
+        "type": "LONGTEXT",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo dados novos conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "ip_origem",
+        "type": "VARCHAR(45)",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo ip origem conforme estrutura SQL.",
+        "classification": "Potencial dado pessoal"
+      },
+      {
+        "name": "data_hora",
+        "type": "DATETIME",
+        "nullable": false,
+        "auto": false,
+        "default": "CURRENT_TIMESTAMP()",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo data hora conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_log_func",
+        "column": "id_funcionario",
+        "table": "funcionario",
+        "ref": "id_funcionario"
+      }
+    ],
+    "pk": "id_log_auditoria"
+  },
+  {
+    "name": "venda_pagamento",
+    "columns": [
+      {
+        "name": "id_venda_pagamento",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": true,
+        "default": null,
+        "pk": true,
+        "fk": null,
+        "unique": false,
+        "description": "Identificador do registro.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_venda",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_vp_venda",
+          "column": "id_venda",
+          "table": "venda",
+          "ref": "id_venda"
+        },
+        "unique": false,
+        "description": "Referência a venda.id_venda.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "id_forma_pagamento",
+        "type": "INT(11)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": {
+          "constraint": "fk_vp_forma",
+          "column": "id_forma_pagamento",
+          "table": "forma_pagamento",
+          "ref": "id_forma_pagamento"
+        },
+        "unique": false,
+        "description": "Referência a forma_pagamento.id_forma_pagamento.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "valor_pago",
+        "type": "DECIMAL(10,2)",
+        "nullable": false,
+        "auto": false,
+        "default": null,
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo valor pago conforme estrutura SQL.",
+        "classification": "Operacional"
+      },
+      {
+        "name": "codigo_autorizacao",
+        "type": "VARCHAR(50)",
+        "nullable": true,
+        "auto": false,
+        "default": "NULL",
+        "pk": false,
+        "fk": null,
+        "unique": false,
+        "description": "Campo codigo autorizacao conforme estrutura SQL.",
+        "classification": "Operacional"
+      }
+    ],
+    "fks": [
+      {
+        "constraint": "fk_vp_forma",
+        "column": "id_forma_pagamento",
+        "table": "forma_pagamento",
+        "ref": "id_forma_pagamento"
+      },
+      {
+        "constraint": "fk_vp_venda",
+        "column": "id_venda",
+        "table": "venda",
+        "ref": "id_venda"
+      }
+    ],
+    "pk": "id_venda_pagamento"
+  }
+]
