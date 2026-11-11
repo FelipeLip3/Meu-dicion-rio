@@ -9,5 +9,5 @@ Crie um repositório público `meu-dicionario`, envie o conteúdo desta pasta pa
 - `assets/der.png`: imagem exportada do DER do Workbench fornecida pelo grupo.
 - `assets/schema.json`: colunas e FKs extraídas do SQL fornecido. Descrições são interpretações e não substituem regras de negócio.
 - `docs/Especificacao_Requisitos_Regras_Negocio_BD.pdf`: documento original versão 1.1, preservado sem alterações.
-- Data Owners e Data Stewards dependem de confirmação de responsabilidade.
+- Data Owner: Felipe Domingos de Lacerda. Data Steward: Guilherme Nere Ferreira do Nascimento. Responsabilidades confirmadas pelo Grupo 7.
 - A correspondência semântica integral entre regras e implementação ainda precisa ser validada pelo grupo.
